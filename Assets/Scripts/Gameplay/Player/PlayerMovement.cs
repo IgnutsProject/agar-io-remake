@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Player
+namespace Gameplay.Player
 {
     public class PlayerMovement : MonoBehaviour
     {

@@ -9,6 +9,10 @@ namespace Gameplay.FoodSystem
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            if (other.TryGetComponent<EntityScaler>(out var scaler) == false) return;
+
+            scaler.Value += GameConfig.IncreaseScaleFactor;
+            
             OnEat?.Invoke();
             
             Destroy(gameObject);

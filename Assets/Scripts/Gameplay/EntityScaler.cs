@@ -1,4 +1,5 @@
 ﻿using System;
+using TMPro.SpriteAssetUtilities;
 using UnityEngine;
 
 namespace Gameplay
@@ -16,8 +17,15 @@ namespace Gameplay
         public float Value
         {
             get => _value;
-            set => _value = value;
+            set
+            {
+                _value = value;
+                
+                OnChangeScale?.Invoke(_value);
+            }
         }
+
+        public event Action<float> OnChangeScale;
 
         private void Start()
         {

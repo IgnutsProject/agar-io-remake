@@ -12,7 +12,11 @@ namespace Gameplay.Player
         [SerializeField] private float sensitivity = 70f;
         [SerializeField] private Transform center;
 
+        [Header("Components")] 
+        [SerializeField] private EntityScaler entityScaler;
+
         private Rigidbody2D _rigidbody;
+        private float _currentSpeedMovement;
 
         private void Awake()
         {
@@ -21,9 +25,16 @@ namespace Gameplay.Player
 
         private void Start()
         {
+            _currentSpeedMovement = speedMovement;
+            
             InputHandler.Instance.OnMouseX += value =>
             {
                 center.Rotate(0, 0, value * sensitivity * Time.deltaTime);
+            };
+
+            entityScaler.OnChangeScale += value =>
+            {
+                _currentSpeedMovement = speedMovement - speedMovement * value / 50;
             };
         }
 
@@ -37,7 +48,7 @@ namespace Gameplay.Player
             Vector3 newPosition = Vector3.MoveTowards(
                 _rigidbody.position,
                 directionPoint.position,
-                speedMovement * Time.deltaTime);
+                _currentSpeedMovement * Time.deltaTime);
             
             _rigidbody.MovePosition(newPosition);
         }

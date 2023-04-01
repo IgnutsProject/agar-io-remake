@@ -2744,6 +2744,7 @@ MonoBehaviour:
   directionPoint: {fileID: 1457303418}
   sensitivity: 600
   center: {fileID: 1027868193}
+  entityScaler: {fileID: 1445754847}
 --- !u!114 &1445754847
 MonoBehaviour:
   m_ObjectHideFlags: 0

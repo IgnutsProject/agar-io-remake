@@ -41,6 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Collectable
+    uniqueID: 2261666575
+    locked: 0
   - name: Player
     uniqueID: 1862441617
     locked: 0

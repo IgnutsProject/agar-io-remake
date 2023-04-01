@@ -8,7 +8,7 @@ namespace Player
         [Header("Movement properties")]
         [SerializeField] private float speedMovement = 7;
         [SerializeField] private Transform directionPoint;
-        
+
         [Header("Rotation properties")]
         [SerializeField] private float sensitivity = 70f;
         [SerializeField] private Transform center;

@@ -9,10 +9,12 @@ namespace Gameplay
         [Header("General properties")]
         [SerializeField] private float baseValue = 1;
         [SerializeField] private float increaseSpeed = 2f;
+        [SerializeField] private float maxValue = 20;
         
         private float _value;
 
         public Vector3 TargetScale => new Vector2(_value, _value);
+        public float MaxValue => maxValue;
         
         public float Value
         {
@@ -20,6 +22,11 @@ namespace Gameplay
             set
             {
                 _value = value;
+
+                if (_value > maxValue)
+                {
+                    _value = maxValue;
+                }
                 
                 OnChangeScale?.Invoke(_value);
             }

@@ -4,8 +4,10 @@ namespace Gameplay.Player
 {
     public class PlayerMovement : MonoBehaviour
     {
-        [Header("Movement properties")]
+        [Header("Movement properties")] 
+        [SerializeField] private AnimationCurve movementCurve;
         [SerializeField] private float speedMovement = 7;
+        [SerializeField] private float minSpeedMovement = 1.5f;
         [SerializeField] private Transform directionPoint;
 
         [Header("Rotation properties")]
@@ -34,7 +36,12 @@ namespace Gameplay.Player
 
             entityScaler.OnChangeScale += value =>
             {
-                _currentSpeedMovement = speedMovement - speedMovement * value / 50;
+                _currentSpeedMovement = speedMovement * movementCurve.Evaluate(value / entityScaler.MaxValue);
+
+                if (_currentSpeedMovement < minSpeedMovement)
+                {
+                    _currentSpeedMovement = minSpeedMovement;
+                }
             };
         }
 

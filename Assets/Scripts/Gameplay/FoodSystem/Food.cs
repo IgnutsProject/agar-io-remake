@@ -5,6 +5,8 @@ namespace Gameplay.FoodSystem
 {
     public class Food : MonoBehaviour
     {
+        public Vector3 Position => transform.position;
+        
         public event Action OnEat;
 
         private void OnTriggerEnter2D(Collider2D other)

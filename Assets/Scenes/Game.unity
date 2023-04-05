@@ -1197,6 +1197,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdef968c9016fbd4fbe8f9bd700de810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerScaler: {fileID: 1445754847}
+  sizeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  maxSize: 20
+  changeSizeSpeed: 0.5
   offset: {x: 0, y: 0, z: -10}
   targetPoint: {fileID: 1445754845}
 --- !u!20 &519420031
@@ -2765,6 +2792,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   speedMovement: 7
+  minSpeedMovement: 1.2
   directionPoint: {fileID: 1457303418}
   sensitivity: 600
   center: {fileID: 1027868193}
@@ -2782,8 +2810,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseValue: 1
-  increaseSpeed: 0.3
-  maxValue: 20
+  increaseSpeed: 1.5
+  maxValue: 15
 --- !u!1 &1457303417
 GameObject:
   m_ObjectHideFlags: 0

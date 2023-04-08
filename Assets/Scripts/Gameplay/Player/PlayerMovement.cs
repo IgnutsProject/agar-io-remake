@@ -8,14 +8,10 @@ namespace Gameplay.Player
         [SerializeField] private AnimationCurve movementCurve;
         [SerializeField] private float speedMovement = 7;
         [SerializeField] private float minSpeedMovement = 1.5f;
-        [SerializeField] private Transform directionPoint;
-
-        [Header("Rotation properties")]
-        [SerializeField] private float sensitivity = 70f;
-        [SerializeField] private Transform center;
 
         [Header("Components")] 
         [SerializeField] private EntityScaler entityScaler;
+        [SerializeField] private Camera playerCamera;
 
         private Rigidbody2D _rigidbody;
         private float _currentSpeedMovement;
@@ -28,11 +24,6 @@ namespace Gameplay.Player
         private void Start()
         {
             _currentSpeedMovement = speedMovement;
-            
-            InputHandler.Instance.OnMouseX += value =>
-            {
-                center.Rotate(0, 0, value * sensitivity * Time.deltaTime);
-            };
 
             entityScaler.OnChangeScale += value =>
             {
@@ -50,11 +41,18 @@ namespace Gameplay.Player
             MoveToDirection();
         }
 
+        private Vector3 GetMovementDirection()
+        {
+            var hit = Physics2D.Raycast(playerCamera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+
+            return hit.point;
+        }
+
         private void MoveToDirection()
         {
             Vector3 newPosition = Vector3.MoveTowards(
                 _rigidbody.position,
-                directionPoint.position,
+                GetMovementDirection(),
                 _currentSpeedMovement * Time.deltaTime);
             
             _rigidbody.MovePosition(newPosition);

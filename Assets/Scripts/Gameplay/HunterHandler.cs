@@ -16,8 +16,7 @@ namespace Gameplay
         [Header("Scale properties")]
         [SerializeField] private EntityScaler selfEntityScaler;
         [SerializeField] private float decreaseScaleFactor = 2;
-        [SerializeField] private float targetScaleFactor = 0.1f;
-        
+
         public event Action OnDie;
 
         private void Start()
@@ -45,7 +44,7 @@ namespace Gameplay
             foreach (var col in colliders)
             {
                 if (col.gameObject == gameObject || col.TryGetComponent<EntityScaler>(out var scaler) == false) continue;
-                if (scaler.Value <= selfEntityScaler.Value + targetScaleFactor) continue;
+                if (scaler.Value <= selfEntityScaler.Value + GameConfig.TargetScaleFactor) continue;
                 
                 scaler.Value += selfEntityScaler.Value / decreaseScaleFactor;
                 

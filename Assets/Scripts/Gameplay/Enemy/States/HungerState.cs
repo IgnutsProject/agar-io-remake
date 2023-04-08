@@ -17,7 +17,19 @@ namespace Gameplay.Enemy.States
             _foodCheckRadius = foodCheckRadius;
             _whatIsFood = whatIsFood;
         }
-        
+
+        public override void Initialize(Enemy enemy)
+        {
+            base.Initialize(enemy);
+            
+            Enemy.OnPreyOutside += () =>
+            {
+                if (Enemy.CurrentState == this) return;
+                
+                Enemy.SetState(Enemy.HungerState);
+            };
+        }
+
         public override void Update()
         {
             

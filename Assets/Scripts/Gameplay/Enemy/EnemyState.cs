@@ -11,7 +11,7 @@ namespace Gameplay.Enemy
         public event Action OnEnterState;
         public event Action OnExitState;
 
-        public void Initialize(Enemy enemy)
+        public virtual void Initialize(Enemy enemy)
         {
             Enemy = enemy;
             Transform = enemy.transform;

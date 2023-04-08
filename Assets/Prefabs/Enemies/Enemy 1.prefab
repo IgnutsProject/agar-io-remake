@@ -43,12 +43,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d48881bac6de06846864f421cbdee811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selfEntityScaler: {fileID: 5522173521442873784}
+  spriteRenderer: {fileID: 5522173521760430797}
   centerPoint: {fileID: 5522173520001600624}
-  checkRadius: 0.05
+  hunterCheckRadius: 0.1
   whatIsHunter:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 72
+  selfEntityScaler: {fileID: 5522173521442873784}
+  decreaseScaleFactor: 2
 --- !u!1 &5522173521442873783
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,7 +136,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4297591b5859ae49a7b123531787e85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyColors:
+  - {r: 0.40000004, g: 1, b: 0.8862746, a: 1}
+  - {r: 0.39999998, g: 1, b: 0.5518785, a: 1}
+  - {r: 1, g: 0.8770651, b: 0.39999998, a: 1}
+  - {r: 1, g: 0.39999998, b: 0.4441985, a: 1}
+  - {r: 0.9027012, g: 0.39999998, b: 1, a: 1}
+  - {r: 0.4700275, g: 0.39999998, b: 1, a: 1}
+  spriteRenderer: {fileID: 5522173521760430797}
   entityScaler: {fileID: 5522173521442873784}
+  hunterHandler: {fileID: 5522173520001600625}
   movementCurve:
     serializedVersion: 2
     m_Curve:
@@ -159,12 +170,16 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  speedMovement: 1
-  minSpeedMovement: 1.2
+  speedMovement: 6
+  minSpeedMovement: 1.5
   foodCheckRadius: 20
   whatIsFood:
     serializedVersion: 2
     m_Bits: 128
+  preyCheckRadius: 10
+  whatIsPrey:
+    serializedVersion: 2
+    m_Bits: 72
 --- !u!114 &5522173521442873784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,7 +194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseValue: 1
   increaseSpeed: 1.5
-  maxValue: 15
+  maxValue: 30
 --- !u!1 &5522173521760430796
 GameObject:
   m_ObjectHideFlags: 0

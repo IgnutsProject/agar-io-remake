@@ -36,6 +36,7 @@ namespace Gameplay.Enemy
         public EnemyState CurrentState { get; private set; }
         
         public float CurrentSpeedMovement { get; private set; }
+        public string EnemyName { get; private set; }
         public EntityScaler EntityScaler => entityScaler;
         public HunterHandler HunterHandler => hunterHandler;
 
@@ -53,6 +54,8 @@ namespace Gameplay.Enemy
             HuntState.Initialize(this);
 
             CurrentState = HungerState;
+
+            EnemyName = GameConfig.BotsNames[Random.Range(0, GameConfig.BotsNames.Length)];
         }
 
         private void Start()
@@ -68,6 +71,11 @@ namespace Gameplay.Enemy
                 {
                     CurrentSpeedMovement = minSpeedMovement;
                 }
+            };
+
+            hunterHandler.OnDie += () =>
+            {
+                Destroy(gameObject);
             };
         }
 

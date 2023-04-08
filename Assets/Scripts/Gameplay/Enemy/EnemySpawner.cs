@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -7,6 +8,8 @@ namespace Gameplay.Enemy
 {
     public class EnemySpawner : MonoBehaviour
     {
+        public static EnemySpawner Instance { get; private set; }
+        
         [Header("Enemies properties")]
         [SerializeField] private Enemy[] enemiesPrefabs;
         
@@ -16,11 +19,30 @@ namespace Gameplay.Enemy
         
         private List<Enemy> _spawnedEnemiesList = new List<Enemy>();
 
+        private void Awake()
+        {
+            if (Instance)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            Instance = this;
+        }
+
         private void Start()
         {
             for (int i = 0; i < GameConfig.StartEnemiesCount; i++)
             {
                 Spawn();
+            }
+        }
+
+        public IEnumerator<Enemy> GetEnemies()
+        {
+            foreach (var enemy in _spawnedEnemiesList)
+            {
+                yield return enemy;
             }
         }
 

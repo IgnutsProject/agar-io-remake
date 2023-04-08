@@ -19,14 +19,6 @@ namespace Gameplay
 
         public event Action OnDie;
 
-        private void Start()
-        {
-            OnDie += () =>
-            {
-                Destroy(transform.parent.gameObject);
-            };
-        }
-
         private void Update()
         {
             spriteRenderer.sortingOrder = (int) selfEntityScaler.Value;

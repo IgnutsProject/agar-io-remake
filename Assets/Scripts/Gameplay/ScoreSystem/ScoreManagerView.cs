@@ -25,19 +25,23 @@ namespace Gameplay.ScoreSystem
             };
         }
 
-        private void Initialize(List<Enemy.Enemy> enemiesList)
+        private void Initialize(List<LeaderData> leaderList)
         {
-            foreach (var enemy in enemiesList)
+            foreach (var enemy in leaderList)
             {
                 CreateSlotView(enemy);
             }
         }
 
-        private void CreateSlotView(Enemy.Enemy enemy)
+        private void CreateSlotView(LeaderData leader)
         {
             LeaderBoardSlotView slotView = Instantiate(slotViewPrefab, layout);
 
-            slotView.LeaderNameText.text = $"{_spawnedSlotViews.Count + 1}. {enemy.EnemyName}";
+            slotView.LeaderNameText.text = $"{_spawnedSlotViews.Count + 1}. {leader.Name}";
+            if (leader.IsPlayer)
+            {
+                slotView.Highlight();
+            }
             
             _spawnedSlotViews.Add(slotView);
         }
